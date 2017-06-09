@@ -1,0 +1,127 @@
+<script type="text/javascript">
+var ie=document.all;
+var nn6=document.getElementById&&!document.all;
+var isdrag=false;
+var x,y;
+var dobj;
+function movemouse(e) {
+	if (isdrag) {
+		dobj.style.left = nn6 ? tx + e.clientX - x : tx + event.clientX - x;
+		dobj.style.top = nn6 ? ty + e.clientY - y : ty + event.clientY - y;
+		return false;
+	}
+}
+function selectmouse(e) {
+	var fobj = nn6 ? e.target : event.srcElement;
+	var topelement = nn6 ? "HTML" : "BODY";
+	while (fobj.tagName != topelement && fobj.className != "arrastavel") {
+		fobj = nn6 ? fobj.parentNode : fobj.parentElement;
+	}
+	if (fobj.className=="arrastavel") {
+		isdrag = true;
+		dobj = fobj;
+		tx = parseInt(dobj.style.left+0);
+		ty = parseInt(dobj.style.top+0);
+		x = nn6 ? e.clientX : event.clientX;
+		y = nn6 ? e.clientY : event.clientY;
+		document.onmousemove=movemouse;
+		return false;
+	}
+}
+document.onmousedown=selectmouse;
+document.onmouseup=new Function("isdrag=false");
+</script>
+
+<script type="text/javascript" src='script/time.js'></script>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body onload="startTime()">
+     <div class="status_bar">
+          <center>
+               <div id="time" class="time"></div>
+          </center>
+     </div>
+     <div class="menu">
+          <form name="send" action="" method="post" class="send" id="send">
+               <fieldset class="cores">
+                    <div>
+                    <input type="radio" name="cor" value="app" id="app">
+                    <label for="app">
+                        <p style="color: rgba(0,0,0,0)">dsadsa</p>
+                        <div class="menu_app">
+                        	<div class="main">
+                            
+                          </div>
+                        </div>
+                    </label>
+                    </div>
+                 <div>
+                    <input type="radio" name="cor" value="terminal" id="terminal">
+                    <label for="terminal">
+                        <p style="color: rgba(0,0,0,0)">dsadsa</p>
+                        <div class="arrastavel">
+               				<div class="bar-term">
+                    			<div class="title">Terminal - Root</div>
+                    			<div class="close">
+                         			<center>x</center>
+                    			</div>
+                    			<div class="max">
+                         			<center>□</center>
+                    			</div>
+                    			<div class="minimize">
+                         			<center>-</center>
+                    			</div>
+               				</div>
+               				<textarea class="textterm" name="textterm" id="textterm">Digite help para ver a lista de comandos</textarea>
+                      		<script type="text/javascript">
+                        	function adicionatag(){
+                        	
+                        	var str = document.getElementById("sendterm").value; 
+                        	var res = str.split(" ");
+                 
+                        	if (str.indexOf('wget -r --id') !== -1) {
+                        		alert(str.indexOf("str") + " " + str[3]);   								
+    							document.getElementById("textterm").innerHTML += "\nroot >" + res[3];
+    						}
+                            else if (document.send.sendterm.value == "help") {
+                            	document.send.textterm.value += "\n" + document.send.sendterm.value + "\nPara mais informações sobre o comando digite comando help.\nwget- Manda para o explorador de arquivos o Post.\ninf - Obtem informações sobre o id.\nroot >";
+                          	}
+                           	}
+                        	</script>
+    	                  	<input type="textarea" name="sendterm" class="sendterm" id='sendterm' autofocus>
+	                      	<input type='button' value='Send' class="buttonterm" onclick='adicionatag()'>
+          				</div>
+                    </label>
+                 </div>
+                 <div>
+                    <input type="radio" name="cor" value="file" id="file">
+                    <label for="file">
+                        <p style="color: rgba(0,0,0,0)">dsadsa</p>
+                        <div class="arrastavel">
+                        	<div class="bar-ex">
+                    			<div class="title">File Explorer</div>
+                    			<div class="close">
+                         		<center>x</center>
+                    			</div>
+                    			<div class="max">
+                         		<center>□</center>
+                    			</div>
+                    			  <div class="minimize">
+                         		  <center>-</center>
+                    			  </div>
+               				</div>
+               				<div class="body">               					
+               				</div>
+                       	</div>
+                    </label>
+                  </div>
+                </fieldset>
+              </div>
+            </label>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </body>
+
+     
